@@ -1,9 +1,19 @@
 import React from 'react';
-
+import useProduct from '../../hooks/useProduct';
+import bannar1 from '../../Images/bannar/bannar1.jpg'
+import Products from '../Products/Products';
 const Home = () => {
+    const [products] = useProduct();
     return (
         <div>
-            <h3>Wellcome to comfort furniture </h3>
+
+            <img className='w-100' src={bannar1} alt="" />
+            <div className=' d-flex row my-5 m-5'>
+                {
+                    products.map(product => <Products product={product}></Products>)
+                }
+            </div>
+
         </div>
     );
 };
