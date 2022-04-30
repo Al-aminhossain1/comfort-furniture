@@ -6,16 +6,18 @@ import Blog from './Components/Blog/Blog';
 import Login from './Components/Login/Login';
 import Home from './Components/Home/Home';
 import Inventory from './Components/Inventory/Inventory';
+import Register from './Components/Register/Register';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/blog' element={<Blog></Blog>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/inventory/:id' element={<Inventory></Inventory>}></Route>
+        <Route path='/register' element={<Register></Register>}></Route>
         {/* <Route path='/'element={}></Route>
         <Route path='/'element={}></Route> */}
       </Routes>

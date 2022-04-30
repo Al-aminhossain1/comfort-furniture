@@ -10,7 +10,7 @@ const Home = () => {
             <img className='w-100' src={bannar1} alt="" />
             <div className=' d-flex row my-5 m-5'>
                 {
-                    products.map(product => <Products product={product}></Products>)
+                    products.map(product => <Products key={product._id} product={product}></Products>)
                 }
             </div>
 

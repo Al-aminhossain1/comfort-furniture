@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Products = ({ product }) => {
-    const { name, price, description, quantity, img } = product;
+    const { name, price, description, quantity, img, _id } = product;
     return (
         <div className=' col-lg-4'>
             <div className="card" style={{ width: "18rem" }}>
@@ -12,7 +12,8 @@ const Products = ({ product }) => {
                     <p className="card-text">Price:{price}</p>
                     <p className="card-text">Quantity:{quantity}</p>
                     <p className="card-text">{description}</p>
-                    <Link to="/inventory/:id" className="btn btn-primary">Update product</Link>
+                    <p>{_id}</p>
+                    <Link to={`/inventory/${_id}`} className="btn btn-primary">Update product</Link>
                 </div>
             </div>
 
