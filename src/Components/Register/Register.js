@@ -1,30 +1,41 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import auth from '../../firebase.init';
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+
+import { Link, useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
 const Register = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
-    const handleEmailBlur = event => {
-        const email = event.target.value;
-        setEmail(email)
-    }
-    const handlePasswordBlur = event => {
-        const password = event.target.value;
-        setPassword(password)
-    }
-    const handleRegister = () => {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((result) => {
-                const user = result.user;
-                console.log(user)
-            })
-            .catch(error => {
-                console.error('error', error)
-            })
+    // const [email, setEmail] = useState('');
+    // const [password, setpassword] = useState('');
+    // // const [confirmPassword, setConfirmPassword] = useState('');
+    const [error1, setError1] = useState('');
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
 
+    const Navigate = useNavigate();
+
+    if (user) {
+        Navigate('/')
+    }
+    const handleRegister = event => {
+        event.preventDefault();
+
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        console.log(email, password);
+        const confirmPassword = event.target.confirmPassword.value;
+        if (password !== confirmPassword) {
+            setError1('two password did not match')
+
+        }
+        createUserWithEmailAndPassword(email, password, confirmPassword)
+
+        console.log(user);
     }
     return (
         <div>
@@ -33,16 +44,19 @@ const Register = () => {
                 <Form onSubmit={handleRegister}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control onBlur={handleEmailBlur} type="email" placeholder="Enter Your Email" />
+                        <Form.Control type="email" name='email' placeholder="Enter Your Email" required />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control onBlur={handlePasswordBlur} type="password" placeholder="Enter Your Password" />
+                        <Form.Control type="password" name='password' placeholder="Enter Your Password" required />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Check me out" />
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control type="password" name='confirmPassword' placeholder="Confirm  Password" />
                     </Form.Group>
+                    <h6>{error1}</h6>
+                    <p>Already have an account<Link to='/login'>Please login</Link></p>
                     <Button variant="primary" type="Register ">
                         Register
                     </Button>
