@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Inventory from '../Inventory/Inventory';
 
 const Products = ({ product }) => {
     const { name, price, description, quantity, img, _id } = product;

@@ -4,6 +4,7 @@ import auth from '../../firebase.init';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import SocialLogIn from '../SocialLogIn/SocialLogIn';
 
 const Register = () => {
     // const [email, setEmail] = useState('');
@@ -19,9 +20,9 @@ const Register = () => {
 
     const Navigate = useNavigate();
 
-    if (user) {
-        Navigate('/')
-    }
+    // if (user) {
+    //     Navigate('/inventory/:id')
+    // }
     const handleRegister = event => {
         event.preventDefault();
 
@@ -33,8 +34,9 @@ const Register = () => {
             setError1('two password did not match')
 
         }
-        createUserWithEmailAndPassword(email, password, confirmPassword)
-
+        else {
+            createUserWithEmailAndPassword(email, password, confirmPassword)
+        }
         console.log(user);
     }
     return (
@@ -55,12 +57,13 @@ const Register = () => {
                         <Form.Label>Confirm Password</Form.Label>
                         <Form.Control type="password" name='confirmPassword' placeholder="Confirm  Password" />
                     </Form.Group>
-                    <h6>{error1}</h6>
+                    <h6 className='text-danger'>{error1}</h6>
                     <p>Already have an account<Link to='/login'>Please login</Link></p>
                     <Button variant="primary" type="Register ">
                         Register
                     </Button>
                 </Form>
+                <SocialLogIn></SocialLogIn>
             </div>
         </div>
     );
