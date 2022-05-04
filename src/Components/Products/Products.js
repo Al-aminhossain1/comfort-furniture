@@ -1,23 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Inventory from '../Inventory/Inventory';
+import useProduct from '../../hooks/useProduct';
+import Product from '../Prodcut/Product';
 
-const Products = ({ product }) => {
-    const { name, price, description, quantity, img, _id } = product;
+const Products = () => {
+    const [products] = useProduct();
+
+
     return (
-        <div className=' col-lg-4'>
-            <div className="card" style={{ width: "18rem" }}>
-                <img className="card-img-top" src={img} />
-                <div className="card-body">
-                    <h5 className="card-title">{name}</h5>
-                    <p className="card-text">Price:{price}</p>
-                    <p className="card-text">Quantity:{quantity}</p>
-                    <p className="card-text">{description}</p>
-                    <p>{_id}</p>
-                    <Link to={`/inventory/${_id}`} className="btn btn-primary">Update product</Link>
-                </div>
-            </div>
+        <div>
+            <div className='row justify-content-center gx-5 gy-4 m-5'>
+                {
+                    products.map(product => <Product key={product._id} product={product}></Product>)
+                }
 
+            </div>
+            <div className='d-flex justify-content-center'>
+                <Link to='/manageInventory'><button className='btn btn-primary '>Manage Inventory</button></Link>
+            </div>
         </div>
     );
 };

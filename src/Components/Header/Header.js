@@ -11,7 +11,7 @@ const Header = () => {
         signOut(auth);
     }
     return (
-        <div className=' container    mx-auto   '>
+        <div className=' container mx-auto sticky-top   '>
             <Navbar collapseOnSelect expand="lg" bg="secondary" variant="light">
                 <Container>
                     <Navbar.Brand href="#home">Comfort-Furniture</Navbar.Brand>
@@ -23,12 +23,16 @@ const Header = () => {
                             <Nav.Link as={Link} eventKey={2} to='/blog'>BLOG</Nav.Link>
                         </Nav>
                         <Nav >
-                            <Nav.Link as={Link} eventKey={2} to='/register'>Register
-                            </Nav.Link>
-                            {!user ? <Nav.Link as={Link} eventKey={2} to='/login'>LOGIN
-                            </Nav.Link> :
-                                <Nav.Link onClick={handelLogOut} eventKey={2} >LOGOUT
-                                </Nav.Link>}
+
+                            {!user ? <>
+
+                                <Nav.Link as={Link} eventKey={2} to='/login'>LOGIN
+                                </Nav.Link>
+                            </> :
+                                <>
+                                    <Nav.Link onClick={handelLogOut} eventKey={2} >LOGOUT
+                                    </Nav.Link>
+                                </>}
                         </Nav>
 
                     </Navbar.Collapse>
