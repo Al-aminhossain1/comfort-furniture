@@ -9,10 +9,8 @@ const Inventory = () => {
 
     const [product, setProduct] = useState({});
     // const { name, price, description, quantity, img } = product;
-    const [quantitys, setQuantitys] = useState(0)
+    const [quantitys, setQuantitys] = useState(10)
     const [addProduct, setAddProduct] = useState(0)
-    console.log(quantitys)
-    console.log(addProduct);
 
     useEffect(() => {
         const url = `http://localhost:5000/product/${id}`;
@@ -22,6 +20,9 @@ const Inventory = () => {
     }, [id])
 
     const handeldeliverd = () => {
+        const newQuantity = product.quantity - 1;
+        setQuantitys(newQuantity);
+        console.log(quantitys);
         const url = `http://localhost:5000/product/${id}`;
         fetch(url, {
             method: "PUT",
@@ -30,14 +31,9 @@ const Inventory = () => {
             },
             body: JSON.stringify(quantitys)
         })
-
             .then(res => res.json())
             .then(data => {
-
-                const newQuantity = product.quantity - 1;
-                console.log(newQuantity);
-                setQuantitys(newQuantity);
-                console.log(quantitys);
+                console.log(data);
             })
     }
     const handelToAddQuantity = event => {
@@ -52,7 +48,7 @@ const Inventory = () => {
     }
     return (
         <div>
-            <div className="card ml-5 text-center" style={{ width: "18rem" }}>
+            <div className="card ml-5 text-center mx-auto" style={{ width: "18rem" }}>
                 <img className="card-img-top" src={product.img} alt="" />
                 <div className="card-body">
                     <h5 className="card-title">{product.name}</h5>

@@ -44,6 +44,11 @@ const Login = () => {
                     Submit
                 </Button>
             </Form>
+            <div className=' mt-4 d-flex justify-content-center align-items-center w-50 mx-auto'>
+                <p className='w-25' style={{ border: "1px solid grey", height: "none" }}></p>
+                <p className='px-2'>or</p>
+                <p className='w-25' style={{ border: "1px solid grey", height: "0px" }}></p>
+            </div>
             <SocialLogIn></SocialLogIn>
         </div>
     );
