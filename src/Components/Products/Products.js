@@ -11,7 +11,7 @@ const Products = () => {
         <div>
             <div className='row justify-content-center gx-5 gy-4 m-5'>
                 {
-                    products.map(product => <Product key={product._id} product={product}></Product>)
+                    products.slice(0, 6).map(product => <Product key={product._id} product={product}></Product>)
                 }
 
             </div>

@@ -9,8 +9,8 @@ const Inventory = () => {
 
     const [product, setProduct] = useState({});
     // const { name, price, description, quantity, img } = product;
-    const [quantitys, setQuantitys] = useState(10)
-    const [addProduct, setAddProduct] = useState(0)
+    const [quantitys, setQuantitys] = useState("")
+    const [addQuantity, setAddQuantity] = useState(0)
 
     useEffect(() => {
         const url = `http://localhost:5000/product/${id}`;
@@ -20,9 +20,9 @@ const Inventory = () => {
     }, [id])
 
     const handeldeliverd = () => {
-        const newQuantity = product.quantity - 1;
+        const newQuantity = parseInt(product.quantity) - 1;
         setQuantitys(newQuantity);
-        console.log(quantitys);
+
         const url = `http://localhost:5000/product/${id}`;
         fetch(url, {
             method: "PUT",
@@ -37,14 +37,25 @@ const Inventory = () => {
             })
     }
     const handelToAddQuantity = event => {
-        setAddProduct(event.target.value);
+        setAddQuantity(event.target.value);
     }
     const handelAddQuantity = event => {
         event.preventDefault()
-        const newqan = product.quantity + parseInt(addProduct);
-        setQuantitys(newqan);
-        // console.log(newqan);
+        const nowQuantity = product.quantity + parseInt(addQuantity);
+        setQuantitys(nowQuantity);
         console.log(quantitys)
+        const url = `http://localhost:5000/product/${id}`;
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(quantitys)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
     }
     return (
         <div>

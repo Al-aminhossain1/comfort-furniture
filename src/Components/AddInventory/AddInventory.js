@@ -7,7 +7,8 @@ const AddInventory = () => {
         const price = event.target.price.value;
         const quantity = event.target.quantity.value;
         const description = event.target.description.value;
-        const product = { name, price, quantity, description };
+        const image = event.target.image.value;
+        const product = { name, price, quantity, description, image };
         console.log(product);
         fetch('http://localhost:5000/product/new', {
             method: "POST",
@@ -28,6 +29,7 @@ const AddInventory = () => {
 
             <h6>please add new inventory</h6>
             <form onSubmit={handelAddInventory}>
+                <input type="url" name="image" id="" placeholder='image' required /><br />
                 <input type="text" name="name" id="" placeholder='name' /><br />
                 <input type="number" name="price" id="" placeholder='price' /><br />
                 <input type="number" name="quantity" id="" placeholder='quantity' /><br />
