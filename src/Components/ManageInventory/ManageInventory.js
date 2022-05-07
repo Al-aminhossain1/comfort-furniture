@@ -14,6 +14,7 @@ const ManageInventory = () => {
                 <Link to='/addInventory'><button className='btn btn-primary '>Add New Item</button></Link>
             </div>
             <p>product Quantity:{products.length}</p>
+
             <div className='row justify-content-center gx-5 gy-4 m-5'>
                 {
                     products.map(product => <AllInventory key={product._id} product={product}></AllInventory>)
