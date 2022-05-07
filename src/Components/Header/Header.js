@@ -24,15 +24,23 @@ const Header = () => {
                         </Nav>
                         <Nav >
 
-                            {!user ? <>
+                            {!user ?
 
                                 <Nav.Link as={Link} eventKey={2} to='/login'>LOGIN
                                 </Nav.Link>
-                            </> :
-                                <>
+                                :
+
+                                <Nav>
+                                    < Nav.Link as={Link} eventKey={2} to='/manageInventory'>Manage Items
+                                    </Nav.Link>
+                                    < Nav.Link as={Link} eventKey={2} to='addInventory'>Add Items
+                                    </Nav.Link>
+                                    < Nav.Link as={Link} eventKey={2} to='/myItems'>My Items
+                                    </Nav.Link>
                                     <Nav.Link onClick={handelLogOut} eventKey={2} >LOGOUT
                                     </Nav.Link>
-                                </>}
+                                </Nav>
+                            }
                         </Nav>
 
                     </Navbar.Collapse>

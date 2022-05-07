@@ -1,8 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const Product = ({ product }) => {
+
+const AllInventory = ({ product }) => {
+
     const { name, price, description, quantity, img, _id } = product;
+    const handelDeleteItem = id => {
+        const url = `http://localhost:5000/product/${id}`;
+        fetch(url, {
+            method: "DELETE",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(product)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                const procced = window.confirm('are you want to delete this item');
+                if (procced) {
+                    console.log('delete this item');
+                }
+            })
+    }
+
     return (
         <div>
             <div className='col-sm-12 col -md-6 col-lg-4 mt-5'>
@@ -14,7 +34,7 @@ const Product = ({ product }) => {
                         <p className="card-text"> <span className='text-primary font-weight-bold'>Quantity</span>:{quantity}</p>
                         <p className="card-text">{description}</p>
                         <p>{_id}</p>
-                        <Link to={`/inventory/${_id}`} className="btn btn-primary d-flex justify-content-center">Update product</Link>
+                        <button onClick={() => handelDeleteItem(_id)} className="btn btn-primary d-flex justify-content-center">Delete</button>
                     </div>
                 </div>
 
@@ -23,4 +43,4 @@ const Product = ({ product }) => {
     );
 };
 
-export default Product;
+export default AllInventory;

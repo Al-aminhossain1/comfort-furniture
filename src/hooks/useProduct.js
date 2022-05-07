@@ -6,7 +6,7 @@ const useProduct = () => {
         fetch('https://murmuring-ravine-82154.herokuapp.com/product')
             .then(res => res.json())
             .then(data => setProducts(data))
-    }, [])
+    }, [products])
 
     return [products, setProducts];
 
