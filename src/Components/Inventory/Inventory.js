@@ -16,7 +16,7 @@ const Inventory = () => {
     console.log(totalQuantity);
 
     useEffect(() => {
-        const url = `http://localhost:5000/product/${id}`;
+        const url = `https://murmuring-ravine-82154.herokuapp.com/product/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data))
@@ -28,7 +28,7 @@ const Inventory = () => {
         const makeQuantity = (newQuantity);
         setQuantity(makeQuantity);
 
-        const url = `http://localhost:5000/product/${id}`;
+        const url = `https://murmuring-ravine-82154.herokuapp.com/product/${id}`;
         fetch(url, {
             method: "PUT",
             headers: {
@@ -49,7 +49,7 @@ const Inventory = () => {
         const nowQuantity = product.quantity + parseInt(addQuantity);
         setQuantity(nowQuantity);
         console.log(quantity)
-        const url = `http://localhost:5000/product/${id}`;
+        const url = `https://murmuring-ravine-82154.herokuapp.com/product/${id}`;
         fetch(url, {
             method: "PUT",
             headers: {

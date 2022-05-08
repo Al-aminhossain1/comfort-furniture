@@ -5,7 +5,7 @@ const AllInventory = ({ product }) => {
 
     const { name, price, description, quantity, img, _id } = product;
     const handelDeleteItem = id => {
-        const url = `http://localhost:5000/product/${id}`;
+        const url = `https://murmuring-ravine-82154.herokuapp.com/product/${id}`;
         fetch(url, {
             method: "DELETE",
             headers: {

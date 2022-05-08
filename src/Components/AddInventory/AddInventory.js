@@ -10,7 +10,7 @@ const AddInventory = () => {
         const image = event.target.image.value;
         const product = { name, price, quantity, description, image };
         console.log(product);
-        fetch('http://localhost:5000/product/new', {
+        fetch('https://murmuring-ravine-82154.herokuapp.com/product/new', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
