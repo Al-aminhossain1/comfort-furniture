@@ -22,7 +22,5 @@ In this project I have created a warehouse management website called Comfort Fur
 * Implement mail verification & reset password function.
 
 
-In the project directory, you can run:
 
-### `npm start`
 
