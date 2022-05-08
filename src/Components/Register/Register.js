@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import auth from '../../firebase.init';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import SocialLogIn from '../SocialLogIn/SocialLogIn';
 
@@ -11,6 +11,8 @@ const Register = () => {
     // const [password, setpassword] = useState('');
     // // const [confirmPassword, setConfirmPassword] = useState('');
     const [error1, setError1] = useState('');
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const [
         createUserWithEmailAndPassword,
         user,
@@ -18,11 +20,18 @@ const Register = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
 
-    const Navigate = useNavigate();
+    const navigate = useNavigate();
 
-    // if (user) {
-    //     Navigate('/inventory/:id')
-    // }
+    if (user) {
+        navigate(from, { replace: true });
+    }
+    let errorMessage;
+    if (error) {
+
+        errorMessage = <p>{error.message}</p>;
+
+
+    }
     const handleRegister = event => {
         event.preventDefault();
 
@@ -37,7 +46,7 @@ const Register = () => {
         else {
             createUserWithEmailAndPassword(email, password, confirmPassword)
         }
-        console.log(user);
+
     }
     return (
         <div>
@@ -58,6 +67,9 @@ const Register = () => {
                         <Form.Control type="password" name='confirmPassword' placeholder="Confirm  Password" />
                     </Form.Group>
                     <h6 className='text-danger'>{error1}</h6>
+                    <h6 className='text-danger'>{errorMessage}</h6>
+
+
                     <p>Already have an account<Link to='/login'>Please login</Link></p>
                     <Button variant="primary" type="Register ">
                         Register

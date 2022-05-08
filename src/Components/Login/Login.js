@@ -26,6 +26,14 @@ const Login = () => {
 
         navigate(from, { replace: true });
     }
+
+    let errorMessage;
+    if (error) {
+
+        errorMessage = <p>{error.message}</p>;
+
+
+    }
     return (
         <div>
             <h1 className='text-center text-primary'>Pleas Login</h1>
@@ -39,6 +47,7 @@ const Login = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" name='password' placeholder="Enter Your Password" />
                 </Form.Group>
+                <h6 className='text-danger'>{errorMessage}</h6>
                 <p>New to comfort furniture<Link to='/register'>Create an account</Link></p>
                 <Button variant="primary" type="submit">
                     Submit
