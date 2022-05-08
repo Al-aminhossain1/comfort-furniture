@@ -11,6 +11,7 @@ import RequireAuth from './Components/RequireAuth/RequireAuth';
 import ManageInventory from './Components/ManageInventory/ManageInventory';
 import AddInventory from './Components/AddInventory/AddInventory';
 import NotFount from './Components/NotFount/NotFount';
+import { ToastContainer } from 'react-toastify';
 // import RequireAuth from './Components/RequireAuth/RequireAuth';
 // import RequireAuth from './Components/RequireAuth/RequireAuth'
 
@@ -37,7 +38,7 @@ function App() {
         {/* <Route path='/'element={}></Route>
         <Route path='/'element={}></Route> */}
       </Routes>
-
+      <ToastContainer />
     </div>
   );
 }

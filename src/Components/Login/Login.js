@@ -1,7 +1,9 @@
-import React from 'react';
+import { async } from '@firebase/util';
+import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import SocialLogIn from '../SocialLogIn/SocialLogIn';
 
@@ -9,6 +11,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+    const [email, setEmail] = useState('');
 
     const [
         signInWithEmailAndPassword,
@@ -16,6 +19,11 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending, error1] = useSendPasswordResetEmail(
+        auth
+    );
+    // user sign in
+
     const handelSignIn = event => {
         event.preventDefault();
         const email = event.target.email.value;
@@ -26,13 +34,16 @@ const Login = () => {
 
         navigate(from, { replace: true });
     }
-
     let errorMessage;
     if (error) {
-
         errorMessage = <p>{error.message}</p>;
+    }
 
-
+    //  Reset Password
+    const resetPassword = (event) => {
+        setEmail(event.target.value);
+        sendPasswordResetEmail(email);
+        toast('Sent email');
     }
     return (
         <div>
@@ -49,6 +60,7 @@ const Login = () => {
                 </Form.Group>
                 <h6 className='text-danger'>{errorMessage}</h6>
                 <p>New to comfort furniture<Link to='/register'>Create an account</Link></p>
+                <button className='btn btn-success mr-5' onClick={resetPassword}>Reset Password</button>
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>

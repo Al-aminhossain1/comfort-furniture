@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import auth from '../../firebase.init';
-
+import 'react-toastify/dist/ReactToastify.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification } from 'react-firebase-hooks/auth';
 import SocialLogIn from '../SocialLogIn/SocialLogIn';
+import { toast } from 'react-toastify';
 
 const Register = () => {
     // const [email, setEmail] = useState('');
@@ -18,7 +19,8 @@ const Register = () => {
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
 
     const navigate = useNavigate();
 
@@ -46,6 +48,7 @@ const Register = () => {
         else {
             createUserWithEmailAndPassword(email, password, confirmPassword)
         }
+        toast('send email verification')
 
     }
     return (

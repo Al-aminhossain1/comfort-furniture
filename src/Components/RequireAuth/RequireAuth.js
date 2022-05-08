@@ -14,6 +14,12 @@ function RequireAuth({ children }) {
 
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
+    if (!user.emailVerified) {
+        return <div className="text-center">
+            <h4 className="text-danger">your Email is not verify !!</h4>
+            <h4 className="text-success">please verify your email</h4>
+        </div>
+    }
 
     return children;
 }
