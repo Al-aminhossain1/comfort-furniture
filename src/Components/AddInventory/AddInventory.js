@@ -25,16 +25,16 @@ const AddInventory = () => {
             })
     }
     return (
-        <div className='text-center'>
+        <div className='text-center mt-4'>
 
-            <h6>please add new inventory</h6>
+            <h3 className='text-success mb-3'>Please add new inventory</h3>
             <form onSubmit={handelAddInventory}>
-                <input type="url" name="image" id="" placeholder='image' required /><br />
-                <input type="text" name="name" id="" placeholder='name' /><br />
-                <input type="number" name="price" id="" placeholder='price' /><br />
-                <input type="number" name="quantity" id="" placeholder='quantity' /><br />
-                <input type="text" name="description" id="" placeholder='description' /><br />
-                <input type="submit" value="Add New Items" />
+                <input className='w-25 mt-2' type="url" name="image" id="" placeholder='image' required /><br />
+                <input className='w-25 mt-2' type="text" name="name" id="" placeholder='name' /><br />
+                <input className='w-25 mt-2' type="number" name="price" id="" placeholder='price' /><br />
+                <input className='w-25 mt-2' type="number" name="quantity" id="" placeholder='quantity' /><br />
+                <input className='w-25 mt-2' type="text" name="description" id="" placeholder='description' /><br />
+                <input className='w-25 btn btn-success mt-1' type="submit" value="Add New Items" />
             </form>
         </div>
     );

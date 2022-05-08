@@ -9,8 +9,11 @@ const Inventory = () => {
 
     const [product, setProduct] = useState({});
     // const { name, price, description, quantity, img } = product;
-    const [quantitys, setQuantitys] = useState("")
+    const [quantity, setQuantity] = useState("")
     const [addQuantity, setAddQuantity] = useState(0)
+    let totalQuantity = product.quantity;
+    totalQuantity = quantity;
+    console.log(totalQuantity);
 
     useEffect(() => {
         const url = `http://localhost:5000/product/${id}`;
@@ -20,8 +23,10 @@ const Inventory = () => {
     }, [id])
 
     const handeldeliverd = () => {
+
         const newQuantity = parseInt(product.quantity) - 1;
-        setQuantitys(newQuantity);
+        const makeQuantity = JSON.stringify(newQuantity);
+        setQuantity(makeQuantity);
 
         const url = `http://localhost:5000/product/${id}`;
         fetch(url, {
@@ -29,7 +34,7 @@ const Inventory = () => {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(quantitys)
+            body: JSON.stringify(product)
         })
             .then(res => res.json())
             .then(data => {
@@ -42,15 +47,15 @@ const Inventory = () => {
     const handelAddQuantity = event => {
         event.preventDefault()
         const nowQuantity = product.quantity + parseInt(addQuantity);
-        setQuantitys(nowQuantity);
-        console.log(quantitys)
+        setQuantity(nowQuantity);
+        console.log(quantity)
         const url = `http://localhost:5000/product/${id}`;
         fetch(url, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(quantitys)
+            body: JSON.stringify(quantity)
         })
             .then(res => res.json())
             .then(data => {
@@ -58,24 +63,24 @@ const Inventory = () => {
             })
     }
     return (
-        <div>
-            <div className="card ml-5 text-center mx-auto" style={{ width: "18rem" }}>
+        <div className='container d-flex'>
+            <div className="card ml-5 mt-4 mx-auto" style={{ width: "22rem" }}>
                 <img className="card-img-top" src={product.img} alt="" />
                 <div className="card-body">
                     <h5 className="card-title">{product.name}</h5>
-                    <p className="card-text">Price:{product.price}</p>
-                    <p className="card-text">Quantity:{product.quantity}</p>
                     <p className="card-text">{product.description}</p>
+                    <p className="card-text"><span className='text-success font-weight-bold'>Price:</span>${product.price}</p>
+                    <p className="card-text"><span className='text-success font-weight-bold'>Quantity:</span>{product.quantity}</p>
 
                     <button onClick={handeldeliverd} className='btn btn-primary'>Delivered</button>
                 </div>
+                <form className='text-center' >
+                    <input onBlur={handelToAddQuantity} type="number" name="number" id="" />
+                    <button onClick={handelAddQuantity} className=' m-2 btn btn-primary'>Add quantity</button>
+                </form>
             </div>
-            <form >
-                <input onBlur={handelToAddQuantity} type="number" name="number" id="" />
-                <button onClick={handelAddQuantity}>add quantity</button>
-            </form>
-            <div className='d-flex justify-content-center'>
-                <Link to='/manageInventory'><button className='btn btn-primary '>Manage Inventory</button></Link>
+            <div className='mt-5'>
+                <Link to='/manageInventory'><button className='btn btn-success '>Manage Inventory</button></Link>
             </div>
         </div>
     );
