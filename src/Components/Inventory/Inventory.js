@@ -25,7 +25,7 @@ const Inventory = () => {
     const handeldeliverd = () => {
 
         const newQuantity = parseInt(product.quantity) - 1;
-        const makeQuantity = JSON.stringify(newQuantity);
+        const makeQuantity = (newQuantity);
         setQuantity(makeQuantity);
 
         const url = `http://localhost:5000/product/${id}`;
@@ -55,7 +55,7 @@ const Inventory = () => {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(quantity)
+            body: JSON.stringify(product)
         })
             .then(res => res.json())
             .then(data => {

@@ -5,7 +5,7 @@ const Product = ({ product }) => {
     const { name, price, description, quantity, img, _id } = product;
     return (
         <div>
-            <div className='col-sm-12 col -md-6 col-lg-4 mt-5'>
+            <div className='col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mt-5'>
                 <div className="card" style={{ width: "18rem", height: "30rem" }}>
                     <img className="card-img-top w-100" src={img} alt="" />
                     <div className="card-body">
