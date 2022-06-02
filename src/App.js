@@ -14,6 +14,7 @@ import NotFount from './Components/NotFount/NotFount';
 import { ToastContainer } from 'react-toastify';
 import Footer from './Components/Footer/Footer';
 import MyItems from './Components/MyItems/MyItems';
+import Dashboard from './Dashboard/Dashboard';
 // import RequireAuth from './Components/RequireAuth/RequireAuth';
 // import RequireAuth from './Components/RequireAuth/RequireAuth'
 
@@ -36,6 +37,7 @@ function App() {
         </RequireAuth>}></Route>
         <Route path='/addInventory' element={<AddInventory></AddInventory>}></Route>
         <Route path='/myItems' element={<MyItems></MyItems>}></Route>
+        <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route>
         <Route path='*' element={<NotFount></NotFount>}></Route>
         {/* <Route path='/'element={}></Route>
         {/* <Route path='/'element={}></Route>

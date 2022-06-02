@@ -37,6 +37,8 @@ const Header = () => {
                                     </Nav.Link>
                                     < Nav.Link as={Link} eventKey={2} to='/myItems'>My Items
                                     </Nav.Link>
+                                    < Nav.Link as={Link} eventKey={2} to='/dashboard'>Dashboard
+                                    </Nav.Link>
                                     <Nav.Link onClick={handelLogOut} eventKey={2} >LOGOUT
                                     </Nav.Link>
                                 </Nav>
